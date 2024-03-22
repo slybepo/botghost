@@ -1,9 +1,10 @@
+const { Client, Intents } = require('discord.js');
 const Discord = require('discord.js');
 
 // Create the first bot client
 const client1 = new Discord.Client();
 
-// Event: First bot is ready
+intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] 
 client1.once('ready', () => {
     console.log(`Logged in as ${client1.user.tag}`);
     
@@ -23,7 +24,7 @@ client1.login(process.env.TOKEN);
 // Create the second bot client
 const client2 = new Discord.Client();
 
-// Event: Second bot is ready
+intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] 
 client2.once('ready', () => {
     console.log(`Logged in as ${client2.user.tag}`);
     
