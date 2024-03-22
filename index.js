@@ -1,68 +1,41 @@
-const { Client, GatewayIntentBits, ActivityType, TextChannel } = require('discord.js');
-require('dotenv').config();
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const client = new Client({
-  intents: Object.keys(GatewayIntentBits).map((a) => {
-    return GatewayIntentBits[a];
-  }),
-});
-const app = express();
-const port = 3000;
-app.get('/', (req, res) => {
-  res.send('Your bot status has been changed');
-});
-app.listen(port, () => {
-  console.log(`🔗 Listening to Jezto: http://localhost:${port}`);
-});
+const Discord = require('discord.js');
 
+// Create the first bot client
+const client1 = new Discord.Client();
 
-const statusMessages = ["Listening to Jezto"];
-
-
-let currentIndex = 0;
-const channelId = '';
-
-async function login() {
-  try {
-    await client.login(process.env.TOKEN);
-    console.log(`\x1b[36m%s\x1b[0m`, `|    🐇 Logged in as ${client.user.tag}`);
-  } catch (error) {
-    console.error('Failed to log in:', error);
-    process.exit(1);
-  }
-}
-
-function updateStatusAndSendMessages() {
-  const currentStatus = statusMessages[currentIndex];
-  const nextStatus = statusMessages[(currentIndex + 1) % statusMessages.length];
-
-  client.user.setPresence({
-    activities: [{ name: currentStatus, type: ActivityType.Custom}],
-    status: 'dnd',
-  });
-
-  
-  const textChannel = client.channels.cache.get(channelId);
-
-  if (textChannel instanceof TextChannel) {
-   
-    textChannel.send(`Bot status is: ${currentStatus}`);
-  } else {
-
-  }
-
-  currentIndex = (currentIndex + 1) % statusMessages.length;
-}
-
-client.once('ready', () => {
-  console.log(`\x1b[36m%s\x1b[0m`, `|    ✅ Bot is ready as ${client.user.tag}`);
-  updateStatusAndSendMessages();
-
-  setInterval(() => {
-    updateStatusAndSendMessages();
-  }, 10000);
+// Event: First bot is ready
+client1.once('ready', () => {
+    console.log(`Logged in as ${client1.user.tag}`);
+    
+    // Set the first bot's status
+    client1.user.setPresence({
+        activity: {
+            name: 'First bot status',
+            type: 'PLAYING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
+        },
+        status: 'online' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
+    });
 });
 
-login();
+// Run the first bot with its Discord bot token
+client1.login(process.env.TOKEN);
+
+// Create the second bot client
+const client2 = new Discord.Client();
+
+// Event: Second bot is ready
+client2.once('ready', () => {
+    console.log(`Logged in as ${client2.user.tag}`);
+    
+    // Set the second bot's status
+    client2.user.setPresence({
+        activity: {
+            name: 'Second bot status',
+            type: 'PLAYING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
+        },
+        status: 'online' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
+    });
+});
+
+// Run the second bot with its Discord bot token
+client2.login(process.env.TOKEN5);
