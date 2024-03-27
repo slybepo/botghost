@@ -11,10 +11,10 @@ client1.once('ready', () => {
     // Set the first bot's status
     client1.user.setPresence({
         activity: {
-            name: 'First bot status',
-            type: 'PLAYING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
+            name: 'CosmoS Menu🌌',
+            type: 'WATCHING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
         },
-        status: 'online' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
+        status: 'idle' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
     });
 });
 
@@ -31,10 +31,10 @@ client2.once('ready', () => {
     // Set the second bot's status
     client2.user.setPresence({
         activity: {
-            name: 'Second bot status',
-            type: 'PLAYING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
+            name: 'CosmoS menu🌌 | UD',
+            type: 'WATCHING' // Possible types: 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
         },
-        status: 'online' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
+        status: 'idle' // Possible statuses: 'online', 'idle', 'dnd', 'invisible'
     });
 });
 
